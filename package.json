@@ -20,7 +20,7 @@
     "*.(js|jsx|ts|tsx)": [
       "npm run prettier",
       "npm run lint:write",
-      "git add ."
+      "git add"
     ]
   },
   "dependencies": {
