@@ -30,6 +30,11 @@ module.exports = {
       "error",
       { devDependencies: true, optionalDependencies: false, peerDependencies: false }
     ],
-    "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"]
+    "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
+    "import/extensions": ["error", "never", { svg: "always" }],
+    "import/no-unresolved": "off",
+    "func-names": "off",
+    "import/prefer-default-export": "off",
+    "no-shadow": "off"
   }
 };
