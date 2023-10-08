@@ -1,7 +1,5 @@
-import {
-  Box, Button, Container, CssBaseline
-} from "@mui/material"; 
-import "./App.css"; 
+import { Box, Button, Container, CssBaseline } from "@mui/material";
+import "./App.css";
 
 function App() {
   return (
