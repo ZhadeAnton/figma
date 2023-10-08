@@ -29,6 +29,7 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       { devDependencies: true, optionalDependencies: false, peerDependencies: false }
-    ]
+    ],
+    "linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"]
   }
 };

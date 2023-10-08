@@ -11,5 +11,5 @@ import "@fontsource/roboto/700.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider theme={theme}>
     <App />
-  </ThemeProvider>
+  </ThemeProvider>,
 );

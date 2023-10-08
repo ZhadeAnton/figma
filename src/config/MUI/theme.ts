@@ -4,12 +4,12 @@ export const themeOptions: ThemeOptions = {
   palette: {
     mode: "light",
     primary: {
-      main: "#1976d2"
+      main: "#1976d2",
     },
     secondary: {
-      main: "#9c27b0"
-    }
-  }
+      main: "#9c27b0",
+    },
+  },
 };
 
 export const theme = createTheme(themeOptions);

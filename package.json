@@ -8,8 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint --debug src/",
     "lint:write": "eslint --debug src/ --fix",
-    "prettier": "prettier --write src/**/*.js",
-    "preview": "vite preview",
+    "prettier": "prettier 'src/**/*.{js,ts,cjs,tsx,json}' --write",
+    "preview": "vite preview"
   },
   "husky": {
     "hooks": {
@@ -18,8 +18,9 @@
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx)": [
+      "npm run prettier",
       "npm run lint:write",
-      "git add"
+      "git add ."
     ]
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/material": "^5.14.12",
     "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
