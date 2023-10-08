@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix",
+    "lint": "eslint src/",
+    "lint:write": "eslint src/ --fix",
     "prettier": "prettier 'src/**/*.{js,ts,cjs,tsx,json}' --write",
     "preview": "vite preview",
     "prepare": "husky install"
