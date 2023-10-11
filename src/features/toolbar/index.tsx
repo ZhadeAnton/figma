@@ -4,18 +4,21 @@ import BrushIcon from "@mui/icons-material/Brush";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import toolState from "../../shared/store/model/toolState";
 import canvasState from "../../shared/store/model/canvasState";
 import Brush from "../../shared/tools/model/brush";
 import Rect from "../../shared/tools/model/rectangle";
 import Circle from "../../shared/tools/model/circle";
 import Line from "../../shared/tools/model/line";
+import Eraser from "../../shared/tools/model/eraser";
 
 enum EToolNames {
   Brush = "Brush",
   Rect = "Rect",
   Circle = "Circle",
   Line = "Line",
+  Eraser = "Eraser",
 }
 
 type TButtonColor =
@@ -52,6 +55,10 @@ const ToolbarList = observer(() => {
           toolState.setTool(new Line(canvasState.canvas));
           break;
         }
+        case EToolNames.Eraser: {
+          toolState.setTool(new Eraser(canvasState.canvas));
+          break;
+        }
         default: {
           /** return */
         }
@@ -79,6 +86,11 @@ const ToolbarList = observer(() => {
       name: EToolNames.Line,
       color: toolState.isLineToolActive ? "info" : ("default" as TButtonColor),
       icon: <RemoveOutlinedIcon />
+    },
+    {
+      name: EToolNames.Eraser,
+      color: toolState.isEaserToolActive ? "info" : ("default" as TButtonColor),
+      icon: <RemoveCircleOutlineIcon />
     }
   ];
 
