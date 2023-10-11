@@ -17,6 +17,23 @@ class ToolState {
     this.tool = tool;
   }
 
+  setFillColor(color: string) {
+    if (this.tool && "fillStyle" in this.tool) {
+      this.tool.fillStyle = color;
+    }
+  }
+
+  setStrokeColor(color: string) {
+    if (this.tool && "strokeStyle" in this.tool) {
+      this.tool.strokeStyle = color;
+    }
+  }
+
+  setLineWidth(width: number) {
+    if (!this.tool) return;
+    this.tool.lineWidth = width;
+  }
+
   get isBrushToolActive() {
     return this.tool instanceof Brush;
   }

@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { Grid, Toolbar } from "@mui/material";
 import ThemeSwitch from "../../features/themeSwitch";
 import ToolbarList from "../../features/toolbar";
+import SettingsBar from "../../features/settingsBar";
 
 function ButtonAppBar() {
   return (
@@ -16,6 +17,9 @@ function ButtonAppBar() {
           <Grid container direction="row" wrap="nowrap">
             <Grid item container direction="row" wrap="nowrap" alignItems="center">
               <ToolbarList />
+            </Grid>
+            <Grid item container direction="row" wrap="nowrap" alignItems="center">
+              <SettingsBar />
             </Grid>
 
             <Grid item mt={2}>
