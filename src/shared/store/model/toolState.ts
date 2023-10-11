@@ -3,6 +3,7 @@ import { TTools } from "../types/toolsType";
 import Brush from "../../tools/model/brush";
 import Rect from "../../tools/model/rectangle";
 import Circle from "../../tools/model/circle";
+import Line from "../../tools/model/line";
 
 class ToolState {
   tool: TTools | null = null;
@@ -25,6 +26,10 @@ class ToolState {
 
   get isCircleToolActive() {
     return this.tool instanceof Circle;
+  }
+
+  get isLineToolActive() {
+    return this.tool instanceof Line;
   }
 }
 

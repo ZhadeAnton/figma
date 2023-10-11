@@ -1,60 +1,59 @@
 import { calcMouseCoordinates } from "../lib/mouseEventTools";
 import Tool from "./tool";
 
-export default class Circle extends Tool {
+export default class Line extends Tool {
   mouseDown: boolean = false;
 
-  startX?: number;
+  currentX?: number;
 
-  startY?: number;
+  currentY?: number;
 
   saved?: string;
 
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
     this.listen();
+    // this.name = "Line";
   }
 
   listen() {
     if (!this.canvas) return;
-    this.canvas.onmousemove = this.mouseMoveHandler.bind(this);
     this.canvas.onmousedown = this.mouseDownHandler.bind(this);
     this.canvas.onmouseup = this.mouseUpHandler.bind(this);
+    this.canvas.onmousemove = this.mouseMoveHandler.bind(this);
+  }
+
+  mouseDownHandler(event: MouseEvent) {
+    this.mouseDown = true;
+    const { x, y } = calcMouseCoordinates(event);
+    this.currentX = x;
+    this.currentY = y;
+    this.ctx?.beginPath();
+    this.ctx?.moveTo(this.currentX, this.currentY);
+    this.saved = this.canvas?.toDataURL();
   }
 
   mouseUpHandler() {
     this.mouseDown = false;
   }
 
-  mouseDownHandler(event: MouseEvent) {
-    const { x, y } = calcMouseCoordinates(event);
-    this.mouseDown = true;
-    this.startX = x;
-    this.startY = y;
-    this.ctx?.beginPath();
-    this.saved = this.canvas?.toDataURL();
-  }
-
   mouseMoveHandler(event: MouseEvent) {
-    if (this.mouseDown && this.startX && this.startY) {
+    if (this.mouseDown) {
       const { x, y } = calcMouseCoordinates(event);
-      const width = x - this.startX;
-      const height = y - this.startY;
-      const r = Math.sqrt(width ** 2 + height ** 2);
-      this.draw(this.startX, this.startY, r);
+      this.draw(x, y);
     }
   }
 
-  draw(x: number, y: number, r: number) {
+  draw(x: number, y: number) {
     const img = new Image();
     img.src = this.saved || "";
     img.onload = () => {
-      if (!this.canvas) return;
+      if (!this.canvas || !this.currentX || !this.currentY) return;
       this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx?.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
       this.ctx?.beginPath();
-      this.ctx?.arc(x, y, r, 0, 2 * Math.PI);
-      this.ctx?.fill();
+      this.ctx?.moveTo(this.currentX, this.currentY);
+      this.ctx?.lineTo(x, y);
       this.ctx?.stroke();
     };
   }
